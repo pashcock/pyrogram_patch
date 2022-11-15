@@ -11,7 +11,12 @@ async def create_key(parsed_update) -> str:
     if hasattr(parsed_update, 'chat'):
         if parsed_update.chat is not None:
             chat_id = str(parsed_update.chat.id)
-    return user_id + chat_id
+    elif hasattr(parsed_update, 'message'):
+        if hasattr(parsed_update.message, 'chat'):
+            if parsed_update.message.chat is not None:
+                chat_id = str(parsed_update.message.chat.id)
+
+    return user_id + ':' + chat_id
 
 
 class MiddlewareHelper:

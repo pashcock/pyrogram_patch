@@ -15,7 +15,8 @@ class PatchedDispatcher(Dispatcher):
         self.pyrogram_patch_middlewares = []
         self.pyrogram_patch_outer_middlewares = []
         self.pyrogram_patch_fsm_storage: BaseStorage | None = None
-        self.pyrogram_patch_allowed_update_types = [pyrogram.types.messages_and_media.message.Message]
+        self.pyrogram_patch_allowed_update_types = [pyrogram.types.messages_and_media.message.Message,
+                                                    pyrogram.types.CallbackQuery]
 
     def pyrogram_patch_include_middleware(self, middleware: object) -> None:
         self.pyrogram_patch_middlewares.append(middleware)

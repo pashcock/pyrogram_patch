@@ -1,6 +1,6 @@
 
 class StateFilter:
-    def __init__(self, state:str = '*') -> None:
+    def __init__(self, state: str = '*') -> None:
         self.state = state
         self.__name__ = state + '_state_filter'
 
