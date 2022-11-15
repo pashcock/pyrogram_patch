@@ -11,12 +11,12 @@ if sys.version_info < MINIMAL_PY_VERSION:
 
 setup(
     name='pyrogram_patch',
-    version='1.3.2',
+    version='1.3.3',
     license='MIT',
-    author='kotttee',
+    author='pashcock',
     python_requires='>=3.9',
     description='This package will add middlewares, routers and fsm for pyrogram',
-    url='https://github.com/kotttee/pyrogram_patch/',
+    url='https://github.com/pashcock/pyrogram_patch/',
     install_requires=['pyrogram>=2.0.0'],
     classifiers=[
         'License :: MIT License',
