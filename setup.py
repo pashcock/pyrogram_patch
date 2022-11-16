@@ -13,10 +13,10 @@ setup(
     name='pyrogram_patch',
     version='1.3.3',
     license='MIT',
-    author='pashcock',
+    author='kotttee',
     python_requires='>=3.9',
     description='This package will add middlewares, routers and fsm for pyrogram',
-    url='https://github.com/pashcock/pyrogram_patch/',
+    url='https://github.com/kotttee/pyrogram_patch/',
     install_requires=['pyrogram>=2.0.0'],
     classifiers=[
         'License :: MIT License',
