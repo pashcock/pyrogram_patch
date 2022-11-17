@@ -24,6 +24,9 @@ class PatchedDispatcher(Dispatcher):
     def pyrogram_patch_include_outer_middleware(self, middleware: object) -> None:
         self.pyrogram_patch_outer_middlewares.append(middleware)
 
+    def pyrogram_patch_include_allowed_update_types(self, pyrogram_types) -> None:
+        self.pyrogram_patch_allowed_update_types.append(pyrogram_types)
+
     async def handler_worker(self, lock):
         while True:
             packet = await self.updates_queue.get()
