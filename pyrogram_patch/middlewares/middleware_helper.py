@@ -35,7 +35,8 @@ class MiddlewareHelper:
         try:
             return self.__data[argument_name]
         except KeyError:
-            raise RuntimeError(f"you are trying to get an argument {argument_name} by calling the get_data method but you haven't given it a value yet")
+            raise RuntimeError(
+                f"you are trying to get an argument {argument_name} by calling the get_data method but you haven't given it a value yet")
 
     async def skip_handler(self) -> None:
         """use this method to skip the handler"""
