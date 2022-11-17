@@ -1,4 +1,5 @@
 from typing import Any
+
 from pyrogram import StopPropagation
 
 
@@ -52,9 +53,9 @@ class MiddlewareHelper:
                     kwargs[k] = v
         return kwargs
 
-    async def _process_middleware(self, parsed_update, middleware):
+    async def _process_middleware(self, parsed_update, middleware, client):
         """PLEASE DON'T USE THIS"""
-        return await middleware(parsed_update, self)
+        return await middleware(parsed_update, self, client)
 
     async def _include_state(self, parsed_update, storage):
         """PLEASE DON'T USE THIS"""

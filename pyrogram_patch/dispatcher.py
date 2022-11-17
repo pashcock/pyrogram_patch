@@ -1,11 +1,12 @@
 import inspect
-from pyrogram_patch.middlewares import MiddlewareHelper
+
 import pyrogram
 from pyrogram.dispatcher import Dispatcher
 from pyrogram.dispatcher import log
 from pyrogram.handlers import RawUpdateHandler
 
 from pyrogram_patch.fsm import BaseStorage
+from pyrogram_patch.middlewares import MiddlewareHelper
 
 
 class PatchedDispatcher(Dispatcher):
@@ -66,8 +67,9 @@ class PatchedDispatcher(Dispatcher):
                                             for middleware in self.pyrogram_patch_middlewares:
                                                 if middleware == type(handler):
                                                     await middleware_helper._process_middleware(parsed_update,
-                                                                                             middleware)
-                                        args = (parsed_update, )
+                                                                                                middleware,
+                                                                                                self.client)
+                                        args = (parsed_update,)
                                 except pyrogram.StopPropagation:
                                     pass
                                 except Exception as e:
@@ -80,14 +82,16 @@ class PatchedDispatcher(Dispatcher):
                                         for middleware in self.pyrogram_patch_middlewares:
                                             if middleware == type(handler):
                                                 await middleware_helper._process_middleware(parsed_update,
-                                                                                            middleware)
+                                                                                            middleware,
+                                                                                            self.client)
                                     args = (update, users, chats)
                                 except pyrogram.StopPropagation:
                                     pass
                             if args is None:
                                 continue
                             try:
-                                kwargs = await middleware_helper._get_data_for_handler(handler.callback.__code__.co_varnames)
+                                kwargs = await middleware_helper._get_data_for_handler(
+                                    handler.callback.__code__.co_varnames)
                                 if inspect.iscoroutinefunction(handler.callback):
                                     await handler.callback(self.client, *args, **kwargs)
                                 else:
