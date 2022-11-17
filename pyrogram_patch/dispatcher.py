@@ -53,7 +53,7 @@ class PatchedDispatcher(Dispatcher):
                 if len(self.pyrogram_patch_outer_middlewares) > 0:
                     for middleware in self.pyrogram_patch_outer_middlewares:
                         if middleware == handler_type:
-                            await middleware_helper._process_middleware(parsed_update, middleware)
+                            await middleware_helper._process_middleware(parsed_update, middleware, self.client)
                 async with lock:
                     for group in self.groups.values():
                         for handler in group:
