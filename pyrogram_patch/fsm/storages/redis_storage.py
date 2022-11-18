@@ -113,8 +113,8 @@ class RedisStorage(BaseStorage):
                  pool_size: int = 10,
                  prefix: str = 'fsm',  # key_gen for multibots
                  loop: typing.Optional[asyncio.AbstractEventLoop] = None,
-                 state_ttl: typing.Optional[int] = None,
-                 data_ttl: typing.Optional[int] = None,
+                 state_ttl: typing.Optional[int] = 3600,
+                 data_ttl: typing.Optional[int] = 3600,
                  **kwargs
                  ):
 
