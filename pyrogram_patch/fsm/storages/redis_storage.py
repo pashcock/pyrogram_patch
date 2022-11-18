@@ -111,6 +111,7 @@ class RedisStorage(BaseStorage):
                  password: typing.Optional[str] = None,
                  ssl: typing.Optional[bool] = None,
                  pool_size: int = 10,
+                 prefix: str = 'fsm',  # key_gen for multibots
                  loop: typing.Optional[asyncio.AbstractEventLoop] = None,
                  state_ttl: typing.Optional[int] = None,
                  data_ttl: typing.Optional[int] = None,
@@ -124,6 +125,7 @@ class RedisStorage(BaseStorage):
         self._ssl = ssl
         self._pool_size = pool_size
         self._kwargs = kwargs
+        self._prefix = prefix
 
         self._state_ttl = state_ttl
         self._data_ttl = data_ttl
@@ -146,12 +148,11 @@ class RedisStorage(BaseStorage):
             await self._redis.get_redis()
         return self._redis
 
-    @staticmethod
-    def key_gen(key, state: bool = False) -> str:
+    def key_gen(self, key, state: bool = False) -> str:
         if state:
-            return key + ':state'
+            return self._prefix + key + ':state'
         else:
-            return key + ':data'
+            return self._prefix + key + ':data'
 
     async def checkup(self, key) -> State:
         redis = await self._get_adapter()
