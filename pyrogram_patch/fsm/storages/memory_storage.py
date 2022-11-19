@@ -1,5 +1,5 @@
-from pyrogram_patch.fsm.states import State
 from pyrogram_patch.fsm.base_storage import BaseStorage
+from pyrogram_patch.fsm.states import State
 
 
 class MemoryStorage(BaseStorage):
@@ -17,7 +17,9 @@ class MemoryStorage(BaseStorage):
         self.__storage[key] = state
 
     async def set_data(self, data: dict, key: str) -> None:
-        self.__data_storage[key] = data
+        temp_data = self.__data_storage[key]
+        temp_data.update(data)
+        self.__data_storage[key] = temp_data
 
     async def get_data(self, key: str) -> dict:
         if key in self.__data_storage:
