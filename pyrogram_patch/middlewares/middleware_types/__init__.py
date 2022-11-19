@@ -5,5 +5,5 @@ __all__ = ['OnMessageMiddleware', 'OnPoolMiddleware', 'OnDeletedMessagesMiddlewa
            'OnDisconnectMiddleware', 'OnRawUpdateMiddleware', 'OnUserStatusMiddleware',
            'OnInlineQueryMiddleware', 'OnCallbackQueryMiddleware', 'OnChosenInlineResultMiddleware',
            'OnEditedMessageMiddleware', 'OnChatJoinRequestMiddleware', 'OnChatMemberUpdatedMiddleware',
-           'OnUpdateMiddleware'
+           'OnUpdateMiddleware', 'OnMessageOrCallbackQueryMiddleware'
            ]
