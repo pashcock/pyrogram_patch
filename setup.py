@@ -2,7 +2,6 @@ import sys
 
 from setuptools import setup, find_packages
 
-
 MINIMAL_PY_VERSION = (3, 9)
 if sys.version_info < MINIMAL_PY_VERSION:
     raise RuntimeError(
@@ -11,7 +10,7 @@ if sys.version_info < MINIMAL_PY_VERSION:
 
 setup(
     name='pyrogram_patch',
-    version='1.3.3',
+    version='1.3.5',
     license='MIT',
     author='kotttee',
     python_requires='>=3.9',
